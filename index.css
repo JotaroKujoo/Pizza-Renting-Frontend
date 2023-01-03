@@ -1,0 +1,16 @@
+body{
+    height: 100vh;
+    background-color: aqua;
+}
+
+.buscador{
+    background: linear-gradient(180deg, rgba(255,193,7,1) 0%, rgba(255,193,7,1) 35%, rgb(237, 237, 237) 100%);
+}
+
+.tar{
+    width: 30em;
+}
+.tarjeta{
+    border: 1px solid black;
+    background-color: aqua;
+}
