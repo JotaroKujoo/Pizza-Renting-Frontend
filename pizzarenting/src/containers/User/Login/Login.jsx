@@ -5,7 +5,6 @@ import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
 const Login = () => {
     let navigate = useNavigate()
     let logged = sessionStorage.getItem("SAVEUSERMAIL")
-
     useEffect(()=>{
         if (logged) {
             navigate("/")
@@ -17,7 +16,6 @@ const Login = () => {
         passwordError: "",
         LoginError: ""
     })
-
     const inputHandler = (e) => {
         //Seteamos dinámicamente el bindeo entre inputs y hook
         setUser((prevState)=>({
@@ -25,30 +23,21 @@ const Login = () => {
             [e.target.name]: e.target.value
         }))
     }
-
     const errorHandler = (field, value, type) => {
-
         let error = ""
-
         // error = errorCheck(field, value, type)
-
         setUserError(((prevState) => ({
             ...prevState,
             [field + "Error"]: error
-
         })))
     };
-
     const [user, setUser] = useState({
         mail: "",
         password: ""
     });
-
     const logMe = () =>{
-
     }
     return (
-            
         <Container>
           <Row className="vh-100 d-flex justify-content-center align-items-center">
             <Col md={8} lg={6} xs={12}>
@@ -60,8 +49,6 @@ const Login = () => {
                     </h2>
                     <div className="mb-3">
                       <Form>
-                        
-  
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="text-center">
                             Email address
@@ -69,17 +56,11 @@ const Login = () => {
                           <Form.Control type="email" name="mail" onChange={(e) => inputHandler(e)} placeholder="Enter email" />
                         </Form.Group>
   
-                        <Form.Group
-                          className="mb-3"
-                          controlId="formBasicPassword"
-                        >
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Password</Form.Label>
                           <Form.Control type="password" name="password" onChange={(e) => inputHandler(e)} placeholder="Password" />
                         </Form.Group>
-                        <Form.Group
-                          className="mb-3"
-                          controlId="formBasicCheckbox"
-                        ></Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
                         <div className="d-grid">
                           <Button variant="primary" type="submit">
                             Log in
@@ -101,9 +82,6 @@ const Login = () => {
             </Col>
           </Row>
         </Container>
-      
     );
-
 }
-
 export default Login;

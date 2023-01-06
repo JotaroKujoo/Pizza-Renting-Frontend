@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -9,6 +10,8 @@ const logged = false;
 
 
 function Header() {
+  let navigate = useNavigate()
+  let logged = sessionStorage.getItem("SAVEUSERMAIL")
   if (logged) {
     return (
       <Navbar className='navbarDesign ' bg="light" expand="lg">
@@ -33,6 +36,7 @@ function Header() {
             </Nav>
             <Form className="d-flex">
               
+              <Button variant="outline-light">Iniciar sesión</Button>
               <Button variant="outline-light">Empezar</Button>
             </Form>
           </Navbar.Collapse>
@@ -43,7 +47,7 @@ function Header() {
     return (
       <Navbar className='navbarDesign ' bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className='text-light'>Pizzer.IO</Navbar.Brand>
+          <Navbar.Brand href="/" className='text-light'>Pizzer.IO</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -51,7 +55,8 @@ function Header() {
             </Nav>
             <Form className="d-flex">
               
-              <Button variant="outline-light">Empezar</Button>
+            <Button href="/login" variant="outline-light me-2">Iniciar sesión</Button>
+              <Button href="/register" variant="outline-light">Empezar</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
