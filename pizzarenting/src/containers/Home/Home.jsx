@@ -32,8 +32,8 @@ function Home(){
                     
                     <Sidebar/>
                 </Col>
-                <Col xs = {8}>
-                <Form.Control type="text" name="searcher" onChange={(e)=> inputHandler(e)} placeholder="Search for restaurant" />
+                <Col className='d-flex justify-content-center align-items-center flex-column' xs = {8}>
+                <Form.Control type="text" className='w-75 mt-3' name="searcher" onChange={(e)=> inputHandler(e)} placeholder="Search for restaurant" />
                     <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-wrap">
                         
                                 {

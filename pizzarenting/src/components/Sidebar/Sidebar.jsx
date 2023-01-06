@@ -4,11 +4,11 @@ const Sidebar = () => {
     return (
         <>
     
-            <Nav className="col-md-12 d-none d-md-block bg-light sidebar"
+            <Nav className="col h-100 card mt-3 ms-2  d-none d-md-block bg-light sidebar"
             activeKey="/home"
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             >
-                <div className="sidebar-sticky"></div>
+                <div className="sidebar-sticky "></div>
             <Nav.Item>
                 <Nav.Link href="/home">Active</Nav.Link>
             </Nav.Item>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Sidebar from './../../components/Sidebar/Sidebar'
 import CardGroup from 'react-bootstrap/CardGroup';
+import "./Pizzeria"
 
 
 
@@ -30,7 +31,7 @@ function Pizzeria(){
 
 
     return (
-        <Container fluid className="">
+        <Container fluid className="pizzeria">
             <Row className='d-flex ms-5 justify-content-center'>
                 <Col xs={8} className='d-flex justify-content-center'>
                     <Form >
