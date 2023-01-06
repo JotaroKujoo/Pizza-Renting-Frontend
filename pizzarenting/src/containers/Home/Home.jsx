@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 
-import { Container, Image, Row, Col } from "react-bootstrap";
+import { Container, Image, Row, Col,Form } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 const pizzerias = ["Cheese Lovers","Meat Lovers","Veggie Lovers", "Giorno Giovana Pizzeria"];
 
 const Home = () => {
+    let navigate = useNavigate()
+    const [pizzeria,setPizzeria] = useState({
+        searcher: ""
+    })
+
+    const inputHandler = (e) => {
+        setPizzeria((prevState)=>({
+            ...prevState,
+            [e.target.name]:e.target.value
+        }))
+    }
+    useEffect(()=>{
+        console.log(pizzeria)
+    })
 
 
     return (
         <Container fluid className="">
             <Row className="">
                 <Col>
+                <Form.Control type="text" name="searcher" onChange={(e)=> inputHandler(e)} placeholder="Search for restaurant" />
                     <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-wrap">
                         
                                 {
