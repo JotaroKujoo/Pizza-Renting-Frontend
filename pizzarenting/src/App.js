@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header'
 import Register from './containers/User/Register/Register'
 import Login from './containers/User/Login/Login'
+import Pizzeria from './containers/Pizzeria/Pizzeria';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home/>} />;
           <Route path="/register" element={<Register/>} />;
           <Route path="/login" element={<Login/>} />;
+          <Route path="/pizzeria" element={<Pizzeria/>}/>;
         </Routes>
       </BrowserRouter>
     </div>
