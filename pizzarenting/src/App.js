@@ -4,6 +4,8 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './containers/Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header'
+import Register from './containers/User/Register/Register'
+import Login from './containers/User/Login/Login'
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Header/>
         <Routes>
           <Route path="/" element={<Home/>} />;
+          <Route path="/register" element={<Register/>} />;
+          <Route path="/login" element={<Login/>} />;
         </Routes>
       </BrowserRouter>
     </div>
