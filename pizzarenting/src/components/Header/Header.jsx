@@ -33,6 +33,7 @@ function Header() {
             </Nav>
             <Form className="d-flex">
               
+              <Button variant="outline-light">Iniciar sesión</Button>
               <Button variant="outline-light">Empezar</Button>
             </Form>
           </Navbar.Collapse>
@@ -51,6 +52,7 @@ function Header() {
             </Nav>
             <Form className="d-flex">
               
+            <Button variant="outline-light me-2">Iniciar sesión</Button>
               <Button variant="outline-light">Empezar</Button>
             </Form>
           </Navbar.Collapse>
