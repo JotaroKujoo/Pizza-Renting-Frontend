@@ -23,3 +23,12 @@ export const registerUser = async (body,res) => {
         return error.response
     }
 }
+
+export const bringAllPizzerias = async (body,res) => {
+    try{
+        let resp = await axios.get("https://pizza-renting-backend-production.up.railway.app/pizzeria/all")
+        return resp
+    }catch(error){
+        return error.response
+    }
+}

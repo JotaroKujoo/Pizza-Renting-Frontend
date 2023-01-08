@@ -4,9 +4,26 @@ import Card from 'react-bootstrap/Card';
 import { Container, Image, Row, Col } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-const pizzerias = ["Cheese Lovers","Meat Lovers","Veggie Lovers", "Giorno Giovana Pizzeria"];
+import { bringAllPizzerias } from "../../services/apicalls";
+import { all } from "axios";
+
+let pizzerias2 = [];
+
+
 
 const Home = () => {
+
+    let [pizzerias,setPizzerias] = useState([])
+    useEffect(()=>{
+        if (pizzerias.length===0){
+            setTimeout(()=>{
+                bringAllPizzerias()
+                .then((res)=>{
+                    setPizzerias(res.data)
+                })
+            },300)
+        }
+    },[pizzerias]);
 
 
     return (
@@ -20,7 +37,7 @@ const Home = () => {
                                         <Card className="m-3" style={{ width: '18rem' }}>
                                             <Card.Img variant="top" src="holder.js/100px180" />
                                             <Card.Body>
-                                                <Card.Title>{pizzeria}</Card.Title>
+                                                <Card.Title>{pizzeria.name}</Card.Title>
                                                 <Card.Text>
                                                 Some quick example text to build on the card title and make up the
                                                 bulk of the card's content.
