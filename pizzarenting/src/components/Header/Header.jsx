@@ -6,10 +6,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Header.scss';
-const logged = false;
+
+
 
 
 function Header() {
+  let userName = sessionStorage.getItem("SAVEUSERNAME")
   let navigate = useNavigate()
   let logged = sessionStorage.getItem("SAVEUSERMAIL")
   if (logged) {
@@ -35,9 +37,9 @@ function Header() {
               </NavDropdown>
             </Nav>
             <Form className="d-flex">
-              
-              <Button variant="outline-dark">Iniciar sesión</Button>
-              <Button variant="outline-dark">Empezar</Button>
+              <div className="card">
+                {userName}
+              </div>
             </Form>
           </Navbar.Collapse>
         </Container>
