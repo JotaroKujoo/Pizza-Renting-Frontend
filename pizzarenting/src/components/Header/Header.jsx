@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Header.scss';
+import { useEffect } from 'react';
 
 
 
@@ -14,6 +15,18 @@ function Header() {
   let userName = sessionStorage.getItem("SAVEUSERNAME")
   let navigate = useNavigate()
   let logged = sessionStorage.getItem("SAVEUSERMAIL")
+
+  
+
+  const logOut = () => {
+    sessionStorage.removeItem("SAVEUSERNAME")
+    sessionStorage.removeItem("SAVEJWT")
+    sessionStorage.removeItem("SAVEUSERMAIL")
+    sessionStorage.removeItem("SAVEUSERROL")
+    navigate("/")
+  }
+
+
   if (logged) {
     return (
       <Navbar className='navbarDesign ' bg="dark" expand="lg">
@@ -39,6 +52,9 @@ function Header() {
             <Form className="d-flex">
               <div className="card">
                 {userName}
+              </div>
+              <div onClick={()=>logOut()} className="ms-3 btn btn-secondary">
+                Log out
               </div>
             </Form>
           </Navbar.Collapse>

@@ -21,6 +21,11 @@ const Login = () => {
         passwordError: "",
         LoginError: ""
     })
+
+    const clickedPizza = (id) => {
+      
+    }
+
     const inputHandler = (e) => {
         //Seteamos dinámicamente el bindeo entre inputs y hook
         setUser((prevState)=>({
