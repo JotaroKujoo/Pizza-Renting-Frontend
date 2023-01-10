@@ -18,7 +18,7 @@ function Header() {
     return (
       <Navbar className='navbarDesign ' bg="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className='text-dark'>Pizzer.IO</Navbar.Brand>
+          <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

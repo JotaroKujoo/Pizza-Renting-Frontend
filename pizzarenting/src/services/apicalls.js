@@ -30,7 +30,6 @@ export const bringPizzeriaById = async (params,res) => {
             `https://pizza-renting-backend-production.up.railway.app/pizzeria/byid/${params}`
             
         )
-        console.log(params)
         
         return resp
     }catch(error){

@@ -18,48 +18,58 @@ function Pizzeria() {
     const [pizzeria, setPizzeria] = useState({
     })
 
-    const [pizzas,setPizzas] = useState([])
+    const [pizzas, setPizzas] = useState([])
 
-    if (pizzas.length === 0){
-        bringAllPizzasInPizzeria(pizzeria.pizzeria)
-                    .then((res) => {
-                        let foundedPizzas = res.data
-                        foundedPizzas.map((pizza)=>{
-                            setPizzas([pizza.name])
-                            console.log(pizza.name)
-                        })
-                        console.log(typeof pizzas)
-                    })
 
-    }
+
+
+
+
 
 
     let pizzeriaId = parseInt(sessionStorage.getItem("SELECTEDPIZZERIA"))
 
     useEffect(() => {
         if (!pizzeria.id) {
-            console.log(pizzeria)
-            
-                bringPizzeriaById(pizzeriaId)
-                    .then((res) => {
-                        console.log(res.data.foundPizzeria)
-                        setPizzeria((prevState) => ({
-                            ...prevState,
-                            id: pizzeriaId,
-                            pizzeria: res.data.foundPizzeria.name
-                        }))
-                        
 
+            bringPizzeriaById(pizzeriaId)
+                .then((res) => {
+                    setPizzeria({
+                        id: pizzeriaId,
+                        pizzeria: res.data.foundPizzeria.name
                     })
-            
+
+
+                })
+
         }
-        
-
-
     })
-    
 
-    console.log(pizzeria)
+
+    useEffect(() => {
+
+        console.log(pizzas)
+
+        console.log(pizzas)
+        bringAllPizzasInPizzeria(pizzeria.pizzeria)
+            .then((res) => {
+                let foundedPizzas = res.data
+                foundedPizzas.map((pizza) => {
+                    if (pizzas.length <= 0) {
+                        setPizzas((prevState) => ([
+                            ...prevState,
+                            pizza
+                        ]))
+                    }
+                })
+            })
+            .then(console.log(pizzas))
+
+
+    },)
+
+
+
 
     const inputHandler = (e) => {
         setPizzeria((prevState) => ({
@@ -89,7 +99,6 @@ function Pizzeria() {
                 <Col xs={8}>
                     <Form.Control type="text" name="searcher" placeholder="Search for pizza" />
                     <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-column">
-
                         {
                             pizzas.map(pizza => (
                                 <Row>
@@ -102,7 +111,7 @@ function Pizzeria() {
                                     <Col>
                                         <Card className="m-3" style={{ width: '50rem' }}>
                                             <Card.Body>
-                                                <Card.Title>{pizza}</Card.Title>
+                                                <Card.Title key={pizza.id}>{pizza.name}</Card.Title>
                                                 <Card.Text>
                                                     Some quick example text to build on the card title and make up the
                                                     bulk of the card's content.
@@ -115,6 +124,7 @@ function Pizzeria() {
                                 </Row>
                             ))
                         }
+
 
 
                     </div>
