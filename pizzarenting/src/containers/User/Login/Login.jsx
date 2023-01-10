@@ -58,6 +58,9 @@ const Login = () => {
             }
           }
           let decoded = jwt_decode(res.data.yourToken)
+          if (decoded){
+            sessionStorage.setItem("SAVEUSERNAME",decoded.name)
+          }
           console.log(res,decoded)
           navigate("/")
           return res
