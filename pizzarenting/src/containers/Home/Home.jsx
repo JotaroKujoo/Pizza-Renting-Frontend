@@ -30,7 +30,7 @@ const Home = () => {
 
     const clickedPizzeria = (id) => {
         sessionStorage.setItem("SELECTEDPIZZERIA",id);
-        navigate("/") //TODO AÑADIR RUTA DE PIZZERIA DETAIL
+        navigate("/pizzeria") //TODO AÑADIR RUTA DE PIZZERIA DETAIL
     }
 
 
@@ -42,7 +42,7 @@ const Home = () => {
                     <Sidebar/>
                 </Col>
                 <Col className='d-flex justify-content-center align-items-center flex-column' xs = {8}>
-                <Form.Control type="text" className='w-75 mt-3' name="searcher" onChange={(e)=> inputHandler(e)} placeholder="Search for restaurant" />
+                 <Form.Control type="text" className='w-75 mt-3' name="searcher" placeholder="Search for restaurant" /> {/*TODO onChange={(e)=> inputHandler(e)}  */}
                     <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-wrap">
                         
                                 {

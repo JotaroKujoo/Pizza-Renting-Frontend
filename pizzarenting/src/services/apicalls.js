@@ -24,6 +24,21 @@ export const registerUser = async (body,res) => {
     }
 }
 
+export const bringPizzeriaById = async (params,res) => {
+    try {
+        let resp = await axios.get(
+            `https://pizza-renting-backend-production.up.railway.app/pizzeria/byid/${params}`
+            
+        )
+        console.log(params)
+        
+        return resp
+    }catch(error){
+        return error.response
+    }
+}
+
+
 export const bringAllPizzerias = async (body,res) => {
     try{
         let resp = await axios.get("https://pizza-renting-backend-production.up.railway.app/pizzeria/all")
@@ -32,3 +47,14 @@ export const bringAllPizzerias = async (body,res) => {
         return error.response
     }
 }
+
+export const bringAllPizzasInPizzeria = async (params,res) => {
+    try{
+        let resp = await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzas/getbypizzeria/${params}`)
+        
+        return resp
+    }catch(error){
+        return error.response
+    }
+}
+
