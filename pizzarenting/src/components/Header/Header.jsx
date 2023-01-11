@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Header.scss';
+import Shopping from '../Shopping/Shopping';
 
 
 
@@ -39,6 +40,9 @@ function Header() {
             <Form className="d-flex">
               <div className="card">
                 {userName}
+              </div>
+              <div className="ms-2">
+                <Shopping />
               </div>
             </Form>
           </Navbar.Collapse>
