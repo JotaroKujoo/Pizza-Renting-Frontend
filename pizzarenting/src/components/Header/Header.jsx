@@ -15,6 +15,18 @@ function Header() {
   let userName = sessionStorage.getItem("SAVEUSERNAME")
   let navigate = useNavigate()
   let logged = sessionStorage.getItem("SAVEUSERMAIL")
+
+  
+
+  const logOut = () => {
+    sessionStorage.removeItem("SAVEUSERNAME")
+    sessionStorage.removeItem("SAVEJWT")
+    sessionStorage.removeItem("SAVEUSERMAIL")
+    sessionStorage.removeItem("SAVEUSERROL")
+    navigate("/")
+  }
+
+
   if (logged) {
     return (
       <Navbar className='navbarDesign ' bg="dark" expand="lg">
