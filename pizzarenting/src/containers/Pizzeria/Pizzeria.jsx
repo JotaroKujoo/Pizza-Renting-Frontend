@@ -8,6 +8,7 @@ import { Container, Image, Row, Col, Form } from "react-bootstrap";
 import { json, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { bringAllPizzasInPizzeria } from '../../services/apicalls';
+import { bringIngredientsInPizza } from '../../services/apicalls';
 
 const pizzeriaName = "Giorno Giovana Pizzeria"
 
@@ -60,6 +61,9 @@ function Pizzeria() {
                             ...prevState,
                             pizza
                         ]))
+                        
+
+
                     }
                 })
             })
@@ -67,6 +71,16 @@ function Pizzeria() {
 
 
     },)
+
+    const getIngredientsFromPizza = async(pizzaName,pizzeriaName) => {
+        let body = {
+            name: pizzaName,
+            pizzeria: pizzeriaName
+        }
+        let resp = await bringIngredientsInPizza(body)
+        console.log(resp)
+        return resp
+    }
 
 
 
@@ -112,11 +126,11 @@ function Pizzeria() {
                                         <Card className="m-3" style={{ width: '50rem' }}>
                                             <Card.Body>
                                                 <Card.Title key={pizza.id}>{pizza.name}</Card.Title>
-                                                <Card.Text>
+                                                <Card.Text onClick={getIngredientsFromPizza(pizza.name,pizzeria.pizzeria)}>
                                                     Some quick example text to build on the card title and make up the
                                                     bulk of the card's content.
                                                 </Card.Text>
-                                                <Button variant="primary">Go somewhere</Button>
+                                                <Button variant="primary">Order</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
