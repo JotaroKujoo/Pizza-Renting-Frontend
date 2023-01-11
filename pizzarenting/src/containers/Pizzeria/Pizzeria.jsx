@@ -13,93 +13,43 @@ import { bringIngredientsInPizza } from '../../services/apicalls';
 const pizzeriaName = "Giorno Giovana Pizzeria"
 
 function Pizzeria() {
-    let navigate = useNavigate()
+    let pizzeriaId = sessionStorage.getItem("SELECTEDPIZZERIA")
 
+    const [pizzeria, setPizzeria] = useState("")
 
-    const [pizzeria, setPizzeria] = useState({
-    })
-
-    const [pizzas, setPizzas] = useState([])
-
+    const [pizzas,setPizzas] = useState([])
 
 
 
 
-
-
-
-    let pizzeriaId = parseInt(sessionStorage.getItem("SELECTEDPIZZERIA"))
-
-    useEffect(() => {
-        if (!pizzeria.id) {
-
-            bringPizzeriaById(pizzeriaId)
-                .then((res) => {
-                    setPizzeria({
-                        id: pizzeriaId,
-                        pizzeria: res.data.foundPizzeria.name
-                    })
-
-
-                })
-
-        }
-    })
-
-
-    useEffect(() => {
-
-        console.log(pizzas)
-
-        console.log(pizzas)
-        bringAllPizzasInPizzeria(pizzeria.pizzeria)
-            .then((res) => {
-                let foundedPizzas = res.data
-                foundedPizzas.map((pizza) => {
-                    if (pizzas.length <= 0) {
-                        setPizzas((prevState) => ([
-                            ...prevState,
-                            pizza
-                        ]))
-                        
-
-
-                    }
-                })
-            })
-            .then(console.log(pizzas))
-
-
-    },)
-
-    const getIngredientsFromPizza = async(pizzaName,pizzeriaName) => {
-        let body = {
-            name: pizzaName,
-            pizzeria: pizzeriaName
-        }
-        let resp = await bringIngredientsInPizza(body)
-        console.log(resp)
-        return resp
+    if(pizzeria === ""){
+        bringPizzeriaById(pizzeriaId)
+        .then((res)=>{
+            setPizzeria(res.data.foundPizzeria.name)
+        })
     }
 
+    console.log(pizzas.length)
 
+    if (pizzas.length === 0 && pizzeria !==""){
+        bringAllPizzasInPizzeria(pizzeria)
+        .then((res)=>{
+            console.log(res.data)
 
-
-    const inputHandler = (e) => {
-        setPizzeria((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
+            
+            setPizzas(res.data)
+            
+        })
     }
 
-
+    console.log(pizzas)
     return (
         <Container fluid className="pizzeria">
             <Row className='d-flex ms-5 justify-content-center'>
                 <Col xs={8} className='d-flex justify-content-center'>
                     <Form >
                         <Form.Label>
-                            <h3 className='ms-5'>{pizzeria.pizzeria}</h3>
+                            <h3 className='ms-5'>{pizzeria}</h3>
                         </Form.Label>
                     </Form>
                 </Col>
@@ -125,10 +75,9 @@ function Pizzeria() {
                                     <Col>
                                         <Card className="m-3" style={{ width: '50rem' }}>
                                             <Card.Body>
-                                                <Card.Title key={pizza.id}>{pizza.name}</Card.Title>
-                                                <Card.Text onClick={getIngredientsFromPizza(pizza.name,pizzeria.pizzeria)}>
-                                                    Some quick example text to build on the card title and make up the
-                                                    bulk of the card's content.
+                                                <Card.Title >{pizza.name}</Card.Title>
+                                                <Card.Text>
+                                                    {pizza.description}
                                                 </Card.Text>
                                                 <Button variant="primary">Order</Button>
                                             </Card.Body>

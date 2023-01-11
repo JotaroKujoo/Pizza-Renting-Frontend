@@ -6,3 +6,10 @@ import "./Orders.scss"
 import { Container, Image, Row, Col, Form } from "react-bootstrap";
 import { json, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+
+
+function Order(){
+
+    
+
+    }
