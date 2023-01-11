@@ -42,6 +42,18 @@ function Pizzeria() {
         })
     }
 
+    const selectedPizzaHandler = (id) => {
+        let carrito = sessionStorage.getItem("SELECTEDPIZZA")
+        
+        if (!carrito){
+            sessionStorage.setItem("SELECTEDPIZZA",","+ id)
+            console.log(carrito)
+        }else{
+            sessionStorage.setItem("SELECTEDPIZZA",carrito +","+ id)
+            console.log(carrito)
+        }
+    }
+
     console.log(pizzas)
     return (
         <Container fluid className="pizzeria">
@@ -79,7 +91,7 @@ function Pizzeria() {
                                                 <Card.Text>
                                                     {pizza.description}
                                                 </Card.Text>
-                                                <Button variant="primary">Order</Button>
+                                                <Button onClick={()=>{selectedPizzaHandler(pizza.id)}} variant="primary">Order</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
