@@ -42,14 +42,16 @@ function Pizzeria() {
         })
     }
 
-    const selectedPizzaHandler = (id) => {
-        let carrito = sessionStorage.getItem("SELECTEDPIZZA")
+    const selectedPizzaHandler = (body) => {
+        let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
+        console.log(carrito)
         
         if (!carrito){
-            sessionStorage.setItem("SELECTEDPIZZA",","+ id)
+            sessionStorage.setItem("SELECTEDPIZZA",JSON.stringify([body]))
             console.log(carrito)
         }else{
-            sessionStorage.setItem("SELECTEDPIZZA",carrito +","+ id)
+            carrito.push(body)
+            sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(carrito))
             console.log(carrito)
         }
     }
@@ -91,7 +93,7 @@ function Pizzeria() {
                                                 <Card.Text>
                                                     {pizza.description}
                                                 </Card.Text>
-                                                <Button onClick={()=>{selectedPizzaHandler(pizza.id)}} variant="primary">Order</Button>
+                                                <Button onClick={()=>{selectedPizzaHandler(pizza)}} variant="primary">Order</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
