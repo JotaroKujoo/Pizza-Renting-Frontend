@@ -112,7 +112,7 @@ function Header() {
                         })
                       }
 
-                      <Button href='/Order'>
+                      <Button href='/order'>
                         Order
                       </Button>
 
