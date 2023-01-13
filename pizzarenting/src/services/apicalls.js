@@ -92,3 +92,14 @@ export const bringIngredientsInPizza = async (body,res) => {
         return error.response
     }
 }
+
+
+export const bringPizzaById = async (params,res) => {
+    try {
+        
+        return await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzas/getbyid/${params}`)
+    } catch (error) {
+        return error.response
+        
+    }
+}
