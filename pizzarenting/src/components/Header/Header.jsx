@@ -31,39 +31,28 @@ function Header() {
     sessionStorage.removeItem("SAVEJWT")
     sessionStorage.removeItem("SAVEUSERMAIL")
     sessionStorage.removeItem("SAVEUSERROL")
+    sessionStorage.removeItem("SELECTEDPIZZA")
+    sessionStorage.removeItem("SELECTEDPIZZERIA")
     navigate("/")
   }
 
-  
-    // useEffect(()=> {
-    //   if (logged){
-    //     let carrito = sessionStorage.getItem("SELECTEDPIZZA")
-    //     if (carrito){
-    //       let carritoObj = carrito.split(",")
-    //       let carritoArr = Object.values(carritoObj)
-    //       carritoArr.map((pizza) => {
-    //         bringPizzaById(pizza)
-    //           .then((res)=>{
-    //             if (content.length === 0){
-    //               let pizzaName = res.data.name
-    //               console.log(content.length)
-    //               setContent((prevState)=>[...prevState, pizzaName])
-    //             }
-    //           })
-            
-              
-            
-    //       })
-    //     }
-        
-    //   }
-    // },[content])
+  const deletePizzaInCarrito = (pizza) => {
+    let shopping = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
+    const index = shopping.indexOf(pizza)
+    const shoppingRemoved = shopping.splice(index, 1)
+    setContent(shopping)
+    sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(shopping))
+    return shoppingRemoved
+  }
   
   console.log(content)
 
   if (logged) {
     let carrito = sessionStorage.getItem("SELECTEDPIZZA")
     if (carrito) {
+      if (carrito.length === 2){
+        sessionStorage.removeItem("SELECTEDPIZZA")
+      }
       let carritoArr = JSON.parse(carrito)
       return (
         <Navbar className='navbarDesign ' bg="dark" expand="lg">
@@ -94,6 +83,9 @@ function Header() {
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}
                   </Button>
+                  <Button variant='danger' onClick={()=>{logOut()}}>
+                    Log out
+                  </Button>
                   <Offcanvas show={show} onHide={handleClose} placement={"end"} >
                     <Offcanvas.Header closeButton>
                       <Offcanvas.Title>Carrito</Offcanvas.Title>
@@ -106,7 +98,9 @@ function Header() {
                             return (
                               <Card  className='mb-2'>
                                 <div>{pizza.name}</div>
+                                <div onClick={()=>{deletePizzaInCarrito(pizza)}} className="btn btn-secondary"> Delete</div>
                               </Card>
+
                             )
 
                         })
@@ -158,6 +152,9 @@ function Header() {
                 <div className="ms-2">
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}
+                  </Button>
+                  <Button variant='danger' onClick={()=>{logOut()}}>
+                    Log out
                   </Button>
                   <Offcanvas show={show} onHide={handleClose} placement={"end"} >
                     <Offcanvas.Header closeButton>

@@ -82,8 +82,8 @@ function Pizzeria() {
                                 <Row>
                                     <Col>
                                         <Card className="m-3" >
-                                            <Card.Img />
-                                            Imagen
+                                            <Card.Img src={pizza.imagen} />
+                                            
                                         </Card>
                                     </Col>
                                     <Col>
