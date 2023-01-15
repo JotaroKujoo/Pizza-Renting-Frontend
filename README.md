@@ -6,7 +6,7 @@
   <!-- <a href="https://pizzarentingfrontend.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Pizza Renting Frontend</h1>
+<h1 align="center">Rama para Remodificar el proyecto</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/JotaroKujoo/pizza-renting-frontend?color=56BEB8">
