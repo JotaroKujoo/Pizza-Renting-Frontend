@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import './Header.scss';
 import { bringPizzaById } from '../../services/apicalls';
 import Shopping from '../Shopping/Shopping';
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 
 
 
@@ -61,8 +61,7 @@ function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/" className='text-dark'>Home</Nav.Link>
-                <Nav.Link href="#link" className='text-dark'>Link</Nav.Link>
+                
                 <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -75,8 +74,8 @@ function Header() {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-              <Form className="d-flex">
-                <div className="card">
+              <Form className="d-flex align-items-center">
+                <div onClick={()=>{navigate("/user")}} className="">
                   {userName}
                 </div>
                 <div className="ms-2">
@@ -93,29 +92,21 @@ function Header() {
                     <Offcanvas.Body>
                       {
                         carritoArr.map((pizza) => {
-                          
-                          
                             return (
-                              <Card  className='mb-2'>
-                                <div>{pizza.name}</div>
-                                <div onClick={()=>{deletePizzaInCarrito(pizza)}} className="btn btn-secondary"> Delete</div>
+                              <Card  className='mb-2 d-flex justify-content-center   '>
+                                <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
+                                <Card.Body>
+                                  
+                                  <div onClick={()=>{deletePizzaInCarrito(pizza)}} className="btn btn-secondary justify-content-end"> Delete</div>
+                                </Card.Body>
                               </Card>
-
                             )
-
                         })
                       }
-
                       <Button href='/order'>
                         Order
                       </Button>
-
-
-
                     </Offcanvas.Body>
-
-
-
                   </Offcanvas>
                 </div>
               </Form>
@@ -131,22 +122,10 @@ function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#home" className='text-dark'>Home</Nav.Link>
-                <Nav.Link href="#link" className='text-dark'>Link</Nav.Link>
-                <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+                
               </Nav>
-              <Form className="d-flex">
-                <div className="card">
+              <Form className="d-flex align-items-center">
+                <div onClick={()=>{navigate("/user")}} className="">
                   {userName}
                 </div>
                 <div className="ms-2">
