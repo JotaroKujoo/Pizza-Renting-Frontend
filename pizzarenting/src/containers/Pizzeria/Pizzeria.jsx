@@ -6,8 +6,8 @@ import { Container, Image, Row, Col, Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { bringAllPizzasInPizzeria } from '../../services/apicalls';
 import { bringIngredientsInPizza } from '../../services/apicalls';
-import PizzaCardLogged from '../../components/Cards/PizzaCardLogged';
-import PizzaCardUnlogged from '../../components/Cards/PizzaCardUnlogged';
+import PizzaCardLogged from './../../components/Cards/PizzaCardLogged';
+import PizzaCardUnlogged from './../../components/Cards/PizzaCardUnlogged';
 
 
 function Pizzeria() {
