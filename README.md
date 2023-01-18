@@ -68,6 +68,8 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ## :checkered_flag: Starting ##
 
+Para iniciar el proyecto en local solo necesitas:
+
 ```bash
 # Clone this project
 $ git clone https://github.com/JotaroKujoo/pizza-renting-frontend
@@ -75,11 +77,15 @@ $ git clone https://github.com/JotaroKujoo/pizza-renting-frontend
 # Access
 $ cd pizza-renting-frontend
 
+# Access
+$ cd pizzarenting
+
+
 # Install dependencies
-$ yarn
+$ npm i
 
 # Run the project
-$ yarn start
+$ npm start
 
 # The server will initialize in the <http://localhost:3000>
 ```
