@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const loginUser = async (body,res) => {
+export const loginUser = async (body, res) => {
     try {
         let resp = await axios.post(
             "https://pizza-renting-backend-production.up.railway.app/auth/login",
@@ -12,7 +12,7 @@ export const loginUser = async (body,res) => {
     }
 }
 
-export const registerUser = async (body,res) => {
+export const registerUser = async (body, res) => {
     try {
         let resp = await axios.post(
             "https://pizza-renting-backend-production.up.railway.app/auth/register",
@@ -24,87 +24,126 @@ export const registerUser = async (body,res) => {
     }
 }
 
-export const bringPizzeriaById = async (params,res) => {
+export const bringPizzeriaById = async (params, res) => {
     try {
         let resp = await axios.get(
             `https://pizza-renting-backend-production.up.railway.app/pizzeria/byid/${params}`
-            
+
         )
-        
+
         return resp
-    }catch(error){
+    } catch (error) {
         return error.response
     }
 }
 
 
-export const bringAllPizzerias = async (body,res) => {
-    try{
+export const bringAllPizzerias = async (body, res) => {
+    try {
 
         const jwt = sessionStorage.getItem("SAVEJWT")
         console.log(jwt)
-        const token = "Bearer "+jwt;
+        const token = "Bearer " + jwt;
         console.log(token)
-        
+
         let resp = await axios.get("https://pizza-renting-backend-production.up.railway.app/pizzeria/all")
         return resp
-    }catch(error){
+    } catch (error) {
         return error.response
     }
 }
 
-export const bringAllPizzasInPizzeria = async (params,res) => {
-    try{
+export const bringAllPizzasInPizzeria = async (params, res) => {
+    try {
         console.log(params)
         let resp = await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzas/getbypizzeria/${params}`)
-        
+
         return resp
-    }catch(error){
+    } catch (error) {
         return error.response
     }
 }
 
 
-export const bringIngredientsInPizza = async (body,res) => {
-    try{
-    //     const jwt = sessionStorage.getItem("SAVEJWT")
-    //     console.log(jwt)
-    //     const token = "Bearer "+ jwt.replace(/['"]+/g, '');
-    //     console.log(token)
-    //     let config = {
-    //         headers: {
-    //             "Authorization": token,
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
-    //             'Access-Control-Allow-Methods': '*',
-    //             "Content-Type": "application/json"
-    //         }
+export const bringIngredientsInPizza = async (body, res) => {
+    try {
+        //     const jwt = sessionStorage.getItem("SAVEJWT")
+        //     console.log(jwt)
+        //     const token = "Bearer "+ jwt.replace(/['"]+/g, '');
+        //     console.log(token)
+        //     let config = {
+        //         headers: {
+        //             "Authorization": token,
+        //             'Access-Control-Allow-Origin': '*',
+        //             'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+        //             'Access-Control-Allow-Methods': '*',
+        //             "Content-Type": "application/json"
+        //         }
 
-    // }
-    console.log(body)
+        // }
+        console.log(body)
 
-    
+
 
         return await axios.get(`https://pizza-renting-backend-production.up.railway.app/ingredients/ingredientsfrompizza`,
-        body)
-        
-    }catch(error){
+            body)
+
+    } catch (error) {
         return error.response
     }
 }
 
 
-export const bringPizzaById = async (params,res) => {
+export const bringPizzaById = async (params, res) => {
     try {
-        
+
         return await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzas/getbyid/${params}`)
     } catch (error) {
         return error.response
-        
+
     }
 }
 
 
-export const bringIngredientsFromPizza = async (params,res) => {
+export const bringIngredientsFromPizza = async (params, res) => {
     return await axios.get(`https://pizza-renting-backend-production.up.railway.app/ingredients/ingredientsfrompizza/${params}`)
+}
+
+
+export const makeAnOrder = async (body, res) => {
+    const jwt = sessionStorage.getItem("SAVEJWT")
+    console.log(jwt)
+    const token = "Bearer " + jwt.replace(/['"]+/g, '');
+    console.log(token)
+    let config = {
+        headers: {
+            "Authorization": token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+            'Access-Control-Allow-Methods': '*',
+            "Content-Type": "application/json"
+        }
+
+    }
+    return await axios.post("https://pizza-renting-backend-production.up.railway.app/orders/orderpizza",
+        body, config)
+}
+
+
+export const getMyOrders = async (params, res) => {
+    const jwt = sessionStorage.getItem("SAVEJWT")
+    console.log(jwt)
+    const token = "Bearer " + jwt.replace(/['"]+/g, '');
+    console.log(token)
+    let config = {
+        headers: {
+            "Authorization": token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+            'Access-Control-Allow-Methods': '*',
+            "Content-Type": "application/json"
+        }
+    }
+    return await axios.get(`https://pizza-renting-backend-production.up.railway.app/orders/myorders/${params}`,
+    config)
 }

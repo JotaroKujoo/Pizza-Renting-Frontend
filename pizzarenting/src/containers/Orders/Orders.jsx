@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { makeAnOrder } from '../../services/apicalls';
 
 import Card from 'react-bootstrap/Card';
 import Sidebar from './../../components/Sidebar/Sidebar'
@@ -8,135 +9,75 @@ import { Container, Image, Row, Col, Form, Accordion } from "react-bootstrap";
 import { json, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import jwt_decode from "jwt-decode";
+import OrderAccordion from '../../components/Accordions/OrderAccordion';
 
 
 
 
 
 function Order() {
-    const [address, setAddress] = useState([])
-    const [carrito, setCarrito] = useState([]);
-    const [order,setOrder] = useState([]);
-    const [user,setUser] = useState();
-    const [instructions,setInstructions] = useState();
-    let decoded = jwt_decode(sessionStorage.getItem("SAVEJWT"))
+    const [pizzas, setPizzas] = useState([])
+    const [orders, setOrders] = useState([])
+    let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
     let navigate = useNavigate()
-    
 
-    const addExtrasToState = (e) => {
-        console.log(e.id)
-        console.log(e.value)
-
-    }
-
-    const inputAddressHandler = (e) => {
-        console.log(e)
-        setAddress(e)
-
-    }
-
-    const addOrderToState = (address) => {
-        let orderSaved = sessionStorage.getItem("SAVEDORDER")
-        if (!orderSaved){
-            carrito.map((item)=>{
-                console.log(carrito.indexOf(item))
-                let indexValue = document.getElementById(carrito.indexOf(item)).selectElement
-                console.log(indexValue)
-                let orderArr = order
-                orderArr.push({
-                    pizzaId: item.id,
-                    userId: user,
-                    extra: "None",
-                    without: "None",
-                    address: address
-                })
-                setOrder(orderArr)
-                console.log(order)
-                sessionStorage.setItem("SAVEDORDER",JSON.stringify(order))
-                navigate("/payment")
-                
-            })
-        }
-        navigate("/payment")
-        
+    const accHandler = () => {
+        console.log("FUNCIONOOO")
     }
     useEffect(() => {
-        if (carrito.length === 0) {
-            setCarrito(JSON.parse(sessionStorage.getItem("SELECTEDPIZZA")));
+        if (pizzas.length === 0) {
+            if (carrito) {
+                setPizzas(carrito)
+            }
         }
-        
-        if (decoded){
-            setUser(decoded.id)
-        }
-        
-        
     })
 
+    const finishOrder = () => {
+        makeAnOrder(orders)
+        .then((res)=>{
+            console.log(res)
+            navigate("/payment")
 
-    if (carrito !== undefined) {
+        })
+        
+        
+    }
+
+    const addOrderToState = (bodyOrder) => {
+        let temp = pizzas.filter(item => item.id === bodyOrder.id)
+        temp.push(bodyOrder)
+        setOrders(temp)
+    }
+    console.log(orders)
+
+    if (pizzas.length > 0) {
         return (
             <Container>
                 <Row>
                     <Col>
                         <Card>
-                            <Accordion>
-                                {
-                                    carrito.map((pizza)=>{
-                                        return (
-                                            <Accordion.Item>
-                                                <Accordion.Header>{pizza.name}</Accordion.Header>
-                                                <Accordion.Body>
-                                                    <Form>
-                                                    
-                                                    
-                                                        
-                                                        {
-                                                            pizza.description.split(",").map((ingredient)=>{
-                                                                return(
-                                                                    
-                                                                    <div id={carrito.indexOf(pizza)}  onChange={(e)=>{addExtrasToState(e.target)}}>
-                                                        
-                                                                        <Form.Label>
-                                                                        {ingredient}
-                                                                        </Form.Label>
-                                                                            
-                                                                    </div>
-                                                                   
-                                                                )
-                                                            })
-                                                        }
-
-                                                        
-                                                        
-                                                    
-
-                                                    
-
-                                                    </Form>
-    
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        )
-                                    })
-                                }
-                            </Accordion>
-    
+                            {
+                                pizzas.map((pizza) => {
+                                    return (
+                                        <OrderAccordion  onUpdate={addOrderToState} onClick={()=>{accHandler()}} pizza={pizza}/>
+                                    )
+                                })
+                            }
                         </Card>
                     </Col>
                     <Col>
                         <Card className='p-5'>
-                            <Button onClick={()=>{addOrderToState(address)}}>Realizar pedido</Button>
-                            <Form.Label  className='mt-4'>Dirección de envío</Form.Label>
-                            <Form.Control onChange={(e)=>{inputAddressHandler(e.target.value)}} placeholder='Your address' className='mt-2'></Form.Control>
-                            
-    
+                            <Button onClick={()=>{finishOrder()}}>Realizar pedido</Button>
+                            <Form.Label className='mt-4'>Dirección de envío</Form.Label>
+                            <Form.Control placeholder='Your address' className='mt-2'></Form.Control>
                         </Card>
                     </Col>
                 </Row>
             </Container>
         )
     }
-        
+
+
 
 }
 
