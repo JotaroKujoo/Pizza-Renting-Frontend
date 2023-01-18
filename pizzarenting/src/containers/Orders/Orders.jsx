@@ -30,23 +30,30 @@ function Order() {
                 setPizzas(carrito)
             }
         }
+        
     })
 
     const finishOrder = () => {
-        makeAnOrder(orders)
-        .then((res)=>{
+        let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
+
+        orderArr.map((order)=>{
+            makeAnOrder(order)
+            .then((res)=>{
             console.log(res)
             navigate("/payment")
 
+        })
         })
         
         
     }
 
     const addOrderToState = (bodyOrder) => {
+        console.log(bodyOrder)
         let temp = pizzas.filter(item => item.id === bodyOrder.id)
         temp.push(bodyOrder)
         setOrders(temp)
+        
     }
     console.log(orders)
 
@@ -59,7 +66,7 @@ function Order() {
                             {
                                 pizzas.map((pizza) => {
                                     return (
-                                        <OrderAccordion  onUpdate={addOrderToState} onClick={()=>{accHandler()}} pizza={pizza}/>
+                                        <OrderAccordion onUpdate={addOrderToState} pizza={pizza}/>
                                     )
                                 })
                             }
