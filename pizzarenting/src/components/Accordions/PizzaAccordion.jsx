@@ -15,6 +15,10 @@ export default function PizzaAccordion({pizza, onUpdate}){
     const [without,setWithout] = useState({})
     const [isChecked,setIsChecked] = useState(false)
     const [ingredients, setIngredients] = useState([])
+
+    let address = JSON.parse(sessionStorage.getItem("ADDRESS"))
+    
+    
     const [bodyPizza,setBodyPizza] = useState({
         idPizza: pizza.id,
         id: decoded.id,
@@ -22,14 +26,12 @@ export default function PizzaAccordion({pizza, onUpdate}){
         without: "None",
         quantity: pizza.quantity || 1,
         price: (pizza.quantity * pizza.price),
-        address: "Calle i"
+        address: address
     })
     
     useEffect(()=>{
         if(ingredients.length === 0){
             setIngredients(pizza.description.split(","))
-        }
-        
             if(carrito){
                 console.log(bodyPizza)
                 let result =  carrito.filter(item=> item.id !== bodyPizza.idPizza)
@@ -39,6 +41,10 @@ export default function PizzaAccordion({pizza, onUpdate}){
                 sessionStorage.setItem('ORDER',JSON.stringify([bodyPizza]))
 
             }
+            
+        }
+        
+            
         
     })
 
@@ -46,20 +52,17 @@ export default function PizzaAccordion({pizza, onUpdate}){
 
         setIsChecked(true)
         if(item.extras){
-            let preResult = carrito.filter(element => element.id === item.id)
             setExtras(item)
             let temp = bodyPizza
             temp.extra = item.extra
-            let result = preResult.push(temp)
             setBodyPizza(temp)
             onUpdate(temp)
+            
         }
         if (item.without){
-            let preResult = carrito.filter(element => element.id === item.id)
             setWithout(item)
             let temp = bodyPizza
             temp.without = item.without
-            let result = preResult.push(temp)
             setBodyPizza(temp)
             onUpdate(temp)
         }

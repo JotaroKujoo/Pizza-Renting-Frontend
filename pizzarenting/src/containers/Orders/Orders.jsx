@@ -18,12 +18,11 @@ import OrderAccordion from '../../components/Accordions/OrderAccordion';
 function Order() {
     const [pizzas, setPizzas] = useState([])
     const [orders, setOrders] = useState([])
+    const [address, setAddress] = useState()
     let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
     let navigate = useNavigate()
 
-    const accHandler = () => {
-        console.log("FUNCIONOOO")
-    }
+
     useEffect(() => {
         if (pizzas.length === 0) {
             if (carrito) {
@@ -33,10 +32,25 @@ function Order() {
         
     })
 
+    const inputAddressHandler = (e) => {
+        setAddress((prevState) => ({
+            ...prevState,
+            "address": e.target.value
+        }))
+        sessionStorage.setItem("ADDRESS",JSON.stringify(e.target.value))
+    }
+
     const finishOrder = () => {
         let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
+        let result = orderArr.filter((item,index)=>{
+            return orderArr.indexOf(item) === index;
+        })
 
-        orderArr.map((order)=>{
+        sessionStorage.setItem("ORDER", JSON.stringify(result))
+
+        
+
+        result.map((order)=>{
             makeAnOrder(order)
             .then((res)=>{
             console.log(res)
@@ -50,7 +64,7 @@ function Order() {
 
     const addOrderToState = (bodyOrder) => {
         console.log(bodyOrder)
-        let temp = pizzas.filter(item => item.id === bodyOrder.id)
+        let temp = orders.filter(item => item.id === bodyOrder.id)
         temp.push(bodyOrder)
         setOrders(temp)
         
@@ -76,7 +90,7 @@ function Order() {
                         <Card className='p-5'>
                             <Button onClick={()=>{finishOrder()}}>Realizar pedido</Button>
                             <Form.Label className='mt-4'>Dirección de envío</Form.Label>
-                            <Form.Control placeholder='Your address' className='mt-2'></Form.Control>
+                            <Form.Control onKeyUp={(e)=>{inputAddressHandler(e)}} placeholder='Your address' className='mt-2'></Form.Control>
                         </Card>
                     </Col>
                 </Row>
