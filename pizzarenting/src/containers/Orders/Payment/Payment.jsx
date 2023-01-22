@@ -89,12 +89,13 @@ function Payment(){
                 <Row>
                     <Col className='d-flex justify-content-center align-items-center flex-column '>
                         <h4>Pedido Realizado</h4>
-                        <Card className='mt-4' style={{ height: "25rem", width: '18rem' }}>
+                        <Card className='mt-4' style={{ height: "30rem", width: '25rem' }}>
                             <Card.Title className='mt-3'><h5>{address}</h5></Card.Title>
                             <Card.Body>
                                 
-                                El rider llegará en breves momentos
-                                <img src="./Pizza-Renting-Frontend\pizzarenting\src\assets\img\rider.png"/>
+                                <h4 className='mb-2'>El rider llegará en breves momentos</h4>
+                                <div className='mb-5'>Tiempo medio estimado: 30 min</div>
+                                <img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/rider.png?raw=true"/>
     
                             </Card.Body>
                         </Card>
