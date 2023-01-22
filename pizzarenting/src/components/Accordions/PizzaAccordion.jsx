@@ -30,11 +30,14 @@ export default function PizzaAccordion({pizza, onUpdate}){
     })
     
     useEffect(()=>{
+        
+
         if(ingredients.length === 0){
+            let carrito = JSON.parse(sessionStorage.getItem("ORDER"))
             setIngredients(pizza.description.split(","))
             if(carrito){
                 console.log(bodyPizza)
-                let result =  carrito.filter(item=> item.id !== bodyPizza.idPizza)
+                let result =  carrito.filter(item=> item.idPizza !== pizza.id)
                 result.push(bodyPizza)
                 sessionStorage.setItem('ORDER',JSON.stringify(result))
             }else{
@@ -51,7 +54,7 @@ export default function PizzaAccordion({pizza, onUpdate}){
     const AccordionHandler = (item) => {
 
         setIsChecked(true)
-        if(item.extras){
+        if(item.extra){
             setExtras(item)
             let temp = bodyPizza
             temp.extra = item.extra
@@ -69,6 +72,7 @@ export default function PizzaAccordion({pizza, onUpdate}){
         
         
     }
+
 
     return (
         <Accordion>

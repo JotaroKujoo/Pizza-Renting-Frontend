@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Accordion,Form } from "react-bootstrap";
 
 export default function IngredientAccordionExtra({ingredients, onUpdate}){
-    const [extras, setExtras] = useState([])
+    const [extra, setExtra] = useState([])
     const [checkedState, setCheckedState] = useState(
         new Array(ingredients.length).fill(false)
     )
@@ -15,28 +15,28 @@ export default function IngredientAccordionExtra({ingredients, onUpdate}){
         );
         setCheckedState(updatedCheckedState);
         let ingredient = ingredients[position]; 
-        if(extras.length === 0){
-            setExtras([ingredient])
+        if(extra.length === 0){
+            setExtra([ingredient])
         }else{
             if(action=== true){
-                let temp = extras
+                let temp = extra
                 temp.push(ingredient)
-                setExtras(temp)
-                onUpdate({extras: temp.toString()})
+                setExtra(temp)
+                onUpdate({extra: temp.toString()})
             }else{
-                let temp = extras
+                let temp = extra
                 let result = temp.filter(item => item != ingredient)
                 console.log(result)
-                setExtras(result)
-                onUpdate({extras: result.toString()})
+                setExtra(result)
+                onUpdate({extra: result.toString()})
             }
         }
     }
-    console.log(extras)
+    console.log(extra)
     return (
         <Accordion>
             <Accordion.Item>
-                <Accordion.Header>Extras</Accordion.Header>
+                <Accordion.Header>extra</Accordion.Header>
                 <Accordion.Body>
                 {
                     ingredients.map((ingredient,index)=>{

@@ -10,6 +10,7 @@ import { json, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import jwt_decode from "jwt-decode";
 import OrderAccordion from '../../components/Accordions/OrderAccordion';
+import PizzaAccordion from '../../components/Accordions/PizzaAccordion';
 
 
 
@@ -17,11 +18,9 @@ import OrderAccordion from '../../components/Accordions/OrderAccordion';
 
 function Order() {
     const [pizzas, setPizzas] = useState([])
-    const [orders, setOrders] = useState([])
     const [address, setAddress] = useState()
     let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
     let navigate = useNavigate()
-
 
     useEffect(() => {
         if (pizzas.length === 0) {
@@ -31,6 +30,19 @@ function Order() {
         }
         
     })
+
+    const showTemp = (body) => {
+        console.log(body)
+        let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
+        
+        let result = orderArr.filter((item,index)=>{
+            return item.idPizza !== body.idPizza
+        })
+        console.log(result)
+        result.push(body)
+        sessionStorage.setItem("ORDER", JSON.stringify(result))
+
+    }
 
     const inputAddressHandler = (e) => {
         setAddress((prevState) => ({
@@ -50,26 +62,12 @@ function Order() {
 
         
 
-        result.map((order)=>{
-            makeAnOrder(order)
-            .then((res)=>{
-            console.log(res)
-            navigate("/payment")
-
-        })
-        })
+        navigate("/payment")
         
         
     }
 
-    const addOrderToState = (bodyOrder) => {
-        console.log(bodyOrder)
-        let temp = orders.filter(item => item.id === bodyOrder.id)
-        temp.push(bodyOrder)
-        setOrders(temp)
-        
-    }
-    console.log(orders)
+    
 
     if (pizzas.length > 0) {
         return (
@@ -80,7 +78,7 @@ function Order() {
                             {
                                 pizzas.map((pizza) => {
                                     return (
-                                        <OrderAccordion onUpdate={addOrderToState} pizza={pizza}/>
+                                        <PizzaAccordion onUpdate={showTemp}  pizza={pizza}/>
                                     )
                                 })
                             }
