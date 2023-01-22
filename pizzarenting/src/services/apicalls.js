@@ -147,3 +147,8 @@ export const getMyOrders = async (params, res) => {
     return await axios.get(`https://pizza-renting-backend-production.up.railway.app/orders/myorders/${params}`,
     config)
 }
+
+export const bringPizzeriasByName = async (params,res)=> {
+    return await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzeria/byname/${params}`
+    )
+}
