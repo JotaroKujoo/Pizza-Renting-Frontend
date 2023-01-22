@@ -93,7 +93,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ## :pizza: Pizzeria ##
 <img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/PizzeriaLogged.JPG?raw=true">
 
+<br>
 
+## 🛒 Carrito ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/Carrito.JPG?raw=true">
 
 
 ## :checkered_flag: Starting ##
