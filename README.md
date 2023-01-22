@@ -75,6 +75,15 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 <br>
 
+## :memo: Register ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/Register.JPG?raw=true">
+
+<br>
+
+## :arrow_forward: Login ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/Loggin.JPG?raw=true">
+
+<br>
 
 ## :house: Home logged in ##
 <img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/HomeLogged.JPG?raw=true">
