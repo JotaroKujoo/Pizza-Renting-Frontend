@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
-import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 import { makeAnOrder } from '../../../services/apicalls';
 
 function Payment(){
     const address = JSON.parse(sessionStorage.getItem("ADDRESS"))
+    const [orderFinished, setOrderFinished] = useState(false)
 
     const makeOrder = () =>{
         orderList.map((order)=>{
@@ -15,6 +16,7 @@ function Payment(){
                 sessionStorage.removeItem("ADDRESS")
                 sessionStorage.removeItem("ORDER")
                 sessionStorage.removeItem("SELECTEDPIZZA")
+                setOrderFinished(true)
             })
         })
     }
@@ -23,44 +25,83 @@ function Payment(){
     let carritoList = JSON.parse(sessionStorage.getItem('SELECTEDPIZZA'));
     if (orderList){
         console.log(orderList)
+        if(orderFinished === false){
+            return(
+                <Container fluid>
+                    <Row>
+                        <Col className='d-flex justify-content-center align-items-center flex-column '>
+                            <h4>Confirmar pedido</h4>
+                            <Card className='mt-4' style={{ height: "25rem", width: '18rem' }}>
+                                <Card.Title className='mt-3'><h5>{address}</h5></Card.Title>
+                                <Card.Body>
+                                    <ListGroup variant='flush'>
         
-    return(
-        <Container fluid>
-            <Row>
-                <Col className='d-flex justify-content-center align-items-center flex-column '>
-                    <h4>Confirmar pedido</h4>
-                    <Card className='mt-4' style={{ height: "25rem", width: '18rem' }}>
-                        <Card.Title className='mt-3'><h5>{address}</h5></Card.Title>
-                        <Card.Body>
-                            <ListGroup variant='flush'>
-
-                            {
-                                carritoList.map((carritoListItem)=>{
-                                    return(
-                                        <ListGroup.Item>
-                                            <div className='row'>
-                                            <div className='col d-flex justify-content-end'>
-                                                {carritoListItem.name}
-                                            </div>
-                                            <div className='col d-flex justify-content-start'>
-                                                {carritoListItem.quantity}
-                                            </div>
-                                        </div>
-                                        </ListGroup.Item>
-                                    )
-                                })
-                            }
-
-                            </ListGroup>
-
-                            <Button className='' onClick={()=>{makeOrder()}}>Pagar</Button>
-
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    )
+                                    {
+                                        carritoList.map((carritoListItem)=>{
+                                            return(
+                                                <ListGroup.Item>
+                                                    <div className='row'>
+                                                    <div className='col d-flex justify-content-end'>
+                                                        {carritoListItem.name}
+                                                    </div>
+                                                    <div className='col d-flex justify-content-start'>
+                                                        {carritoListItem.quantity}
+                                                    </div>
+                                                </div>
+                                                </ListGroup.Item>
+                                            )
+                                        })
+                                    }
+        
+                                    </ListGroup>
+        
+                                    <Button className='' onClick={()=>{makeOrder()}}>Pagar</Button>
+        
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }else{
+            return(
+                <Container fluid>
+                    <Row>
+                        <Col className='d-flex justify-content-center align-items-center flex-column '>
+                            <h4>Pedido Realizado</h4>
+                            <Card className='mt-4' style={{ height: "25rem", width: '18rem' }}>
+                                <Card.Title className='mt-3'><h5>{address}</h5></Card.Title>
+                                <Card.Body>
+                                    
+                                    El rider llegará en breves momentos
+        
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
+        
+    }else{
+        return(
+            <Container fluid>
+                <Row>
+                    <Col className='d-flex justify-content-center align-items-center flex-column '>
+                        <h4>Pedido Realizado</h4>
+                        <Card className='mt-4' style={{ height: "25rem", width: '18rem' }}>
+                            <Card.Title className='mt-3'><h5>{address}</h5></Card.Title>
+                            <Card.Body>
+                                
+                                El rider llegará en breves momentos
+                                <img src="./Pizza-Renting-Frontend\pizzarenting\src\assets\img\rider.png"/>
+    
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        )
     }
 }
 
