@@ -50,9 +50,10 @@ Proyecto de Fronted en React, aplicación web de comida a domicilio con posibili
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Registrarse e Iniciar sesión;\
+:heavy_check_mark: Buscar pizzerias y navegar entre ellas;\
+:heavy_check_mark: Poder realizar pedidos de pizzas personalizados;
+:heavy_check_mark: Poder consultar el historial de pedidos realizados;
 
 ## :rocket: Technologies ##
 
@@ -65,6 +66,26 @@ The following tools were used in this project:
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+
+# :eyes: Views #
+
+## :house: Home logged out ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/HomeNoLogged.JPG?raw=true">
+
+<br>
+
+
+## :house: Home logged in ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/HomeLogged.JPG?raw=true">
+
+<br>
+
+## :pizza: Pizzeria ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/PizzeriaLogged.JPG?raw=true">
+
+
+
 
 ## :checkered_flag: Starting ##
 
