@@ -98,6 +98,20 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ## 🛒 Carrito ##
 <img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/Carrito.JPG?raw=true">
 
+<br>
+
+## :bookmark_tabs: Personaliza las pizzas ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/OrderPage.JPG?raw=true">
+
+<br>
+
+## :ballot_box_with_check: Confirma el pedido ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/Payment.JPG?raw=true">
+
+<br>
+
+## :white_check_mark: Disfruta de tu pedido ##
+<img src="https://github.com/JotaroKujoo/Pizza-Renting-Frontend/blob/main/pizzarenting/src/assets/img/PedidoRealizado.JPG?raw=true">
 
 ## :checkered_flag: Starting ##
 
