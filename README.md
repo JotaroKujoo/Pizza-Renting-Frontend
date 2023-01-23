@@ -46,7 +46,7 @@
 
 ## :dart: About ##
 
-Proyecto de Fronted en React, aplicación web de comida a domicilio con posibilidad de modificar los ingredientes de cada pizza, en este proyecto he intentado al máximo el delegar información a componentes y sub componentes para tratar estados de cada uno de forma individual, este proyecto me ha enseñado el principio de reutilización de React, me ha ocasionado muchos problemas la modificación individual de cada pizza del pedido y el manipular correctamente los estado, actualmente NO se encuentra en producción pero a lo largo de esta semana (16/1/23) estará finalizado y desplegado en amazon web service
+Proyecto de Fronted en React, aplicación web de comida a domicilio con posibilidad de modificar los ingredientes de cada pizza, en este proyecto he intentado al máximo el delegar información a componentes y sub componentes para tratar estados de cada uno de forma individual, este proyecto me ha enseñado el principio de reutilización de React, me ha ocasionado muchos problemas la modificación individual de cada pizza del pedido y el manipular correctamente los estado, desplegado en Amazon Web Service [Link](https://main.d3jl41wcipfi3.amplifyapp.com/)
 
 ## :sparkles: Features ##
 
