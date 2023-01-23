@@ -44,8 +44,6 @@ function Header() {
     sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(shopping))
     return shoppingRemoved
   }
-  
-  console.log(content)
 
   if (logged) {
     let carrito = sessionStorage.getItem("SELECTEDPIZZA")

@@ -44,7 +44,6 @@ function Home(){
             },300)
         }
     }
-    console.log(pizzerias)
 
     return (
         <Container fluid className="homeContainer">

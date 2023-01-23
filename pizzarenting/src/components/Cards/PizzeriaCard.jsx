@@ -12,7 +12,6 @@ function PizzeriaCard({pizzeria}){
         sessionStorage.setItem("SELECTEDPIZZERIA", pizzeria.id);
         navigate("/pizzeria")
     }
-    console.log(pizzeria)
     return (
         
                         <div className="card p-3 m-3" style={{width:300}}>

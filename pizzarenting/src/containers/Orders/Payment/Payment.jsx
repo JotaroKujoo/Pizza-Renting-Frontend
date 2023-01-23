@@ -10,9 +10,7 @@ function Payment(){
     const makeOrder = () =>{
         orderList.map((order)=>{
             order.address = JSON.parse(sessionStorage.getItem("ADDRESS"))
-            console.log(order)
             makeAnOrder(order).then((res)=>{
-                console.log(res)
                 sessionStorage.removeItem("ADDRESS")
                 sessionStorage.removeItem("ORDER")
                 sessionStorage.removeItem("SELECTEDPIZZA")
@@ -24,7 +22,6 @@ function Payment(){
     let orderList = JSON.parse(sessionStorage.getItem('ORDER'));
     let carritoList = JSON.parse(sessionStorage.getItem('SELECTEDPIZZA'));
     if (orderList){
-        console.log(orderList)
         if(orderFinished === false){
             return(
                 <Container fluid>

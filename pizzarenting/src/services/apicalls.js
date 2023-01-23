@@ -42,9 +42,7 @@ export const bringAllPizzerias = async (body, res) => {
     try {
 
         const jwt = sessionStorage.getItem("SAVEJWT")
-        console.log(jwt)
         const token = "Bearer " + jwt;
-        console.log(token)
 
         let resp = await axios.get("https://pizza-renting-backend-production.up.railway.app/pizzeria/all")
         return resp
@@ -55,7 +53,6 @@ export const bringAllPizzerias = async (body, res) => {
 
 export const bringAllPizzasInPizzeria = async (params, res) => {
     try {
-        console.log(params)
         let resp = await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzas/getbypizzeria/${params}`)
 
         return resp
@@ -81,7 +78,6 @@ export const bringIngredientsInPizza = async (body, res) => {
         //         }
 
         // }
-        console.log(body)
 
 
 
@@ -112,9 +108,7 @@ export const bringIngredientsFromPizza = async (params, res) => {
 
 export const makeAnOrder = async (body, res) => {
     const jwt = sessionStorage.getItem("SAVEJWT")
-    console.log(jwt)
     const token = "Bearer " + jwt.replace(/['"]+/g, '');
-    console.log(token)
     let config = {
         headers: {
             "Authorization": token,
@@ -132,9 +126,7 @@ export const makeAnOrder = async (body, res) => {
 
 export const getMyOrders = async (params, res) => {
     const jwt = sessionStorage.getItem("SAVEJWT")
-    console.log(jwt)
     const token = "Bearer " + jwt.replace(/['"]+/g, '');
-    console.log(token)
     let config = {
         headers: {
             "Authorization": token,

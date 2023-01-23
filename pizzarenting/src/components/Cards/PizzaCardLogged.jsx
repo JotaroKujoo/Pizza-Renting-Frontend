@@ -14,7 +14,6 @@ export default function PizzaCardLogged({ pizza }) {
     const CounterHandler = (e) => {
         let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
         const value = e.target.value
-        console.log(value)
 
         carrito.map((pizzaCarrito)=>{
             if(pizzaCarrito.id === pizza.id){
@@ -24,29 +23,24 @@ export default function PizzaCardLogged({ pizza }) {
         })
 
         if(value === "+"){
-            console.log("ENTRO")
             setCounter(counter+1)
             pizza.quantity = counter + 1
             
             
         }
         if(value==="-"){
-            console.log("ENTRO AL MENOS")
             setCounter(counter-1)
             pizza.quantity = counter - 1
         }
 
         carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
-        console.log(carrito)
 
         if (!carrito) {
             pizza.quantity = 1
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify([pizza]))
-            console.log(carrito)
         } else {
             carrito.push(pizza)
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(carrito))
-            console.log(carrito)
         }
         
 
@@ -58,16 +52,13 @@ export default function PizzaCardLogged({ pizza }) {
 
     const selectedPizzaHandler = (body) => {
         let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
-        console.log(carrito)
 
         if (!carrito) {
             body.quantity = 1
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify([body]))
-            console.log(carrito)
         } else {
             carrito.push(body)
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(carrito))
-            console.log(carrito)
         }
         setSelected(true)
         setCounter(counter+1)

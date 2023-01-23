@@ -19,7 +19,6 @@ function OffCanvasExample({ name, ...props }) {
         if (logged){
             let carrito = sessionStorage.getItem("SELECTEDPIZZA")
             if (carrito){
-                console.log(content)
                 if (content === undefined){
                     setContent(carrito)
                 }
@@ -34,7 +33,6 @@ function OffCanvasExample({ name, ...props }) {
         let carrito = sessionStorage.getItem("SELECTEDPIZZA")
         if (carrito) {
             let carritoArr = carrito.split(",")
-            console.log(carritoArr)
             
             return (
                 <>
