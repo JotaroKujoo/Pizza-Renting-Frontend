@@ -36,7 +36,6 @@ export default function PizzaAccordion({pizza, onUpdate}){
             let carrito = JSON.parse(sessionStorage.getItem("ORDER"))
             setIngredients(pizza.description.split(","))
             if(carrito){
-                console.log(bodyPizza)
                 let result =  carrito.filter(item=> item.idPizza !== pizza.id)
                 result.push(bodyPizza)
                 sessionStorage.setItem('ORDER',JSON.stringify(result))

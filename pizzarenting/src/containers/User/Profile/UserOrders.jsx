@@ -12,7 +12,6 @@ function UserOrders(){
     useEffect(()=>{
         if (orders.length === 0){
             let decoded = jwt_decode(sessionStorage.getItem("SAVEJWT"))
-            console.log(parseInt(decoded.id))
             getMyOrders(parseInt(decoded.id)).then((res)=>setOrders(res.data.orders) )
         }
         orders.map((order)=>{

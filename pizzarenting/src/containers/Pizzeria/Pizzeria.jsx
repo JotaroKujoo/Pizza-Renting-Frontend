@@ -26,12 +26,10 @@ function Pizzeria() {
         })
     }
 
-    console.log(pizzas.length)
 
     if (pizzas.length === 0 && pizzeria !==""){
         bringAllPizzasInPizzeria(pizzeria)
         .then((res)=>{
-            console.log(res.data)
 
             
             setPizzas(res.data)
@@ -40,8 +38,6 @@ function Pizzeria() {
     }
 
     
-
-    console.log(pizzas)
     if (logged){
         return (
             <Container fluid className="pizzeria">

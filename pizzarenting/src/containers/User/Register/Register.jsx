@@ -15,7 +15,6 @@ const Register = () => {
         if (logged) {
             navigate("/")
         }
-        console.log(user)
     })
     const [userError, setUserError] = useState({
         mailError: "",
@@ -42,7 +41,6 @@ const Register = () => {
             [field + "Error"]: error
 
         })))
-        console.log(error)
     };
 
     const assertPasswordEqual = (pass) => {
@@ -57,7 +55,6 @@ const Register = () => {
             ["Error"]: error
 
         })))
-        console.log(error)
   }
 
     const [user, setUser] = useState({
@@ -88,7 +85,6 @@ const Register = () => {
             }
           }
           let decoded = jwt_decode(res.data.yourToken)
-          console.log(res,decoded)
           navigate("/")
           return res
         })

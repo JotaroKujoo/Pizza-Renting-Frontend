@@ -26,13 +26,11 @@ export default function IngredientAccordionExtra({ingredients, onUpdate}){
             }else{
                 let temp = without
                 let result = temp.filter(item => item != ingredient)
-                console.log(result)
                 setWithout(result)
                 onUpdate({without: result.toString()})
             }
         }
     }
-    console.log(without)
     return (
         <Accordion>
             <Accordion.Item>

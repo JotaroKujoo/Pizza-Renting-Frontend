@@ -14,7 +14,6 @@ const Login = () => {
         if (logged) {
             navigate("/")
         }
-        console.log(user)
     })
     const [userError, setUserError] = useState({
         mailError: "",
@@ -40,7 +39,6 @@ const Login = () => {
             ...prevState,
             [field + "Error"]: error
         })))
-        console.log(error)
     };
     const [user, setUser] = useState({
         mail: "",
@@ -66,7 +64,6 @@ const Login = () => {
           if (decoded){
             sessionStorage.setItem("SAVEUSERNAME",decoded.name)
           }
-          console.log(res,decoded)
           navigate("/")
           return res
         })

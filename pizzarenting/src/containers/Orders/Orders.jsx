@@ -32,13 +32,11 @@ function Order() {
     })
 
     const showTemp = (body) => {
-        console.log(body)
         let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
         
         let result = orderArr.filter((item,index)=>{
             return item.idPizza !== body.idPizza
         })
-        console.log(result)
         result.push(body)
         sessionStorage.setItem("ORDER", JSON.stringify(result))
 
