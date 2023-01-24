@@ -17,6 +17,7 @@ import { Card, Row, Col } from 'react-bootstrap';
 
 function Header() {
   let userName = sessionStorage.getItem("SAVEUSERNAME")
+  sessionStorage.setItem("SELECTEDPIZZA", "")
   let navigate = useNavigate()
   const [show, setShow] = useState(false);
   const [content, setContent] = useState([]);
@@ -48,9 +49,7 @@ function Header() {
   if (logged) {
     let carrito = sessionStorage.getItem("SELECTEDPIZZA")
     if (carrito) {
-      if (carrito.length === 2) {
-        sessionStorage.removeItem("SELECTEDPIZZA")
-      }
+      
       let carritoArr = JSON.parse(carrito)
       return (
         <Navbar className='navbarDesign ' bg="dark" expand="lg">
@@ -58,24 +57,20 @@ function Header() {
             <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+            
 
-                <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
               <Form className="d-flex align-items-center">
-                <div onClick={() => { navigate("/user") }} className="">
+                <div onClick={() => { navigate("/userorders") }} className="">
                   {userName}
                 </div>
+                <Nav className="me-auto">
+                  <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.2">
+                      Pedidos
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+                
                 <div className="ms-2">
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}
@@ -123,9 +118,16 @@ function Header() {
 
               </Nav>
               <Form className="d-flex align-items-center">
-                <div onClick={() => { navigate("/user") }} className="">
+                <div  className="">
                   {userName}
                 </div>
+                <Nav className="me-auto">
+                  <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                    <NavDropdown.Item onClick={() => { navigate("/userorders") }}>
+                      Pedidos
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
                 <div className="ms-2">
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}

@@ -23,7 +23,7 @@ function App() {
           <Route path="/pizzeria" element={<Pizzeria />} />;
           <Route path="/order" element={<Order />} />;
           <Route path="/payment" element={<Payment />} />;
-          <Route path="/user" element={<UserOrders />} />;
+          <Route path="/userorders" element={<UserOrders />} />;
         </Routes>
       </BrowserRouter>
     </div>
