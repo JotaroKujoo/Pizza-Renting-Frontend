@@ -28,7 +28,6 @@ export const bringPizzeriaById = async (params, res) => {
     try {
         let resp = await axios.get(
             `https://pizza-renting-backend-production.up.railway.app/pizzeria/byid/${params}`
-
         )
 
         return resp
@@ -143,4 +142,58 @@ export const getMyOrders = async (params, res) => {
 export const bringPizzeriasByName = async (params, res) => {
     return await axios.get(`https://pizza-renting-backend-production.up.railway.app/pizzeria/byname/${params}`
     )
+}
+
+export const bringMyUserData = async (params, res) => {
+    return await axios.get(`https://pizza-renting-backend-production.up.railway.app/user/getmyuserdata/${params}`)
+}
+
+export const updateUserData = async (body,res) => {
+    const jwt = sessionStorage.getItem("SAVEJWT")
+    const token = "Bearer " + jwt.replace(/['"]+/g, '');
+    let config = {
+        headers: {
+            "Authorization": token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+            'Access-Control-Allow-Methods': '*',
+            "Content-Type": "application/json"
+        }
+    }
+
+    return await axios.patch("https://pizza-renting-backend-production.up.railway.app/user/updatemyuserdata",
+    body,config)
+}
+
+export const bringAllUsers = async (body,res) => {
+    const jwt = sessionStorage.getItem("SAVEJWT")
+    const token = "Bearer " + jwt.replace(/['"]+/g, '');
+    let config = {
+        headers: {
+            "Authorization": token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+            'Access-Control-Allow-Methods': '*',
+            "Content-Type": "application/json"
+        }
+    }
+    return await axios.get("https://pizza-renting-backend-production.up.railway.app/user/getallusers/1",
+    config)
+}
+
+
+export const bringAllOrders = async (body,res) => {
+    const jwt = sessionStorage.getItem("SAVEJWT")
+    const token = "Bearer " + jwt.replace(/['"]+/g, '');
+    let config = {
+        headers: {
+            "Authorization": token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Content-Type, Authorization',
+            'Access-Control-Allow-Methods': '*',
+            "Content-Type": "application/json"
+        }
+    }
+    return await axios.get("https://pizza-renting-backend-production.up.railway.app/orders/allorders/1",
+    config)
 }

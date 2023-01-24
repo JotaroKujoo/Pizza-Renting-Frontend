@@ -17,7 +17,6 @@ import { Card, Row, Col } from 'react-bootstrap';
 
 function Header() {
   let userName = sessionStorage.getItem("SAVEUSERNAME")
-  sessionStorage.setItem("SELECTEDPIZZA", "")
   let navigate = useNavigate()
   const [show, setShow] = useState(false);
   const [content, setContent] = useState([]);
@@ -26,6 +25,7 @@ function Header() {
   const handleShow = () => setShow(true);
 
   let logged = sessionStorage.getItem("SAVEUSERMAIL")
+  let role = JSON.parse(sessionStorage.getItem("SAVEUSERROL"))
 
   const logOut = () => {
     sessionStorage.removeItem("SAVEUSERNAME")
@@ -47,116 +47,219 @@ function Header() {
   }
 
   if (logged) {
-    let carrito = sessionStorage.getItem("SELECTEDPIZZA")
-    if (carrito) {
-      
-      let carritoArr = JSON.parse(carrito)
-      return (
-        <Navbar className='navbarDesign ' bg="dark" expand="lg">
-          <Container>
-            <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-            
+    if (role === 1) {
+      let carrito = sessionStorage.getItem("SELECTEDPIZZA")
+      if (carrito) {
 
-              <Form className="d-flex align-items-center">
-                <div onClick={() => { navigate("/userorders") }} className="">
-                  {userName}
-                </div>
+        let carritoArr = JSON.parse(carrito)
+        return (
+          <Navbar className='navbarDesign ' bg="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="/" className='text-dark'>Pizzer.IO ADMIN</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+
+
+                <Form className="d-flex align-items-center">
+                  <div onClick={() => { navigate("/admindata") }} className="">
+                    {userName}
+                  </div>
+                  <Nav className="me-auto">
+                    <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                      <NavDropdown.Item onClick={() => { navigate("/adminorders") }} >
+                        Pedidos
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+
+                  <div className="ms-2">
+                    <Button variant="secondary" onClick={handleShow} className="me-2">
+                      Carrito                                                                 {/* BOTÓN DEL CARRITO */}
+                    </Button>
+                    <Button variant='danger' onClick={() => { logOut() }}>
+                      Log out
+                    </Button>
+                    <Offcanvas show={show} onHide={handleClose} placement={"end"} >
+                      <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Carrito</Offcanvas.Title>
+                      </Offcanvas.Header>
+                      <Offcanvas.Body>
+                        {
+                          carritoArr.map((pizza) => {
+                            return (
+                              <Card className='mb-2 d-flex justify-content-center   '>
+                                <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
+                                <Card.Body>
+
+                                  <div onClick={() => { deletePizzaInCarrito(pizza) }} className="btn btn-secondary justify-content-end"> Delete</div>
+                                </Card.Body>
+                              </Card>
+                            )
+                          })
+                        }
+                        <Button href='/order'>
+                          Order
+                        </Button>
+                      </Offcanvas.Body>
+                    </Offcanvas>
+                  </div>
+                </Form>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        );
+      } else {
+        return (
+          <Navbar className='navbarDesign ' bg="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="/" className='text-dark'>Pizzer.IO ADMIN</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.2">
-                      Pedidos
-                    </NavDropdown.Item>
-                  </NavDropdown>
+
                 </Nav>
-                
-                <div className="ms-2">
-                  <Button variant="secondary" onClick={handleShow} className="me-2">
-                    Carrito                                                                 {/* BOTÓN DEL CARRITO */}
-                  </Button>
-                  <Button variant='danger' onClick={() => { logOut() }}>
-                    Log out
-                  </Button>
-                  <Offcanvas show={show} onHide={handleClose} placement={"end"} >
-                    <Offcanvas.Header closeButton>
-                      <Offcanvas.Title>Carrito</Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                      {
-                        carritoArr.map((pizza) => {
-                          return (
-                            <Card className='mb-2 d-flex justify-content-center   '>
-                              <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
-                              <Card.Body>
-
-                                <div onClick={() => { deletePizzaInCarrito(pizza) }} className="btn btn-secondary justify-content-end"> Delete</div>
-                              </Card.Body>
-                            </Card>
-                          )
-                        })
-                      }
-                      <Button href='/order'>
-                        Order
-                      </Button>
-                    </Offcanvas.Body>
-                  </Offcanvas>
-                </div>
-              </Form>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
-    } else {
-      return (
-        <Navbar className='navbarDesign ' bg="dark" expand="lg">
-          <Container>
-            <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-
-              </Nav>
-              <Form className="d-flex align-items-center">
-                <div  className="">
-                  {userName}
-                </div>
-                <Nav className="me-auto">
-                  <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
-                    <NavDropdown.Item onClick={() => { navigate("/userorders") }}>
-                      Pedidos
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-                <div className="ms-2">
-                  <Button variant="secondary" onClick={handleShow} className="me-2">
-                    Carrito                                                                 {/* BOTÓN DEL CARRITO */}
-                  </Button>
-                  <Button variant='danger' onClick={() => { logOut() }}>
-                    Log out
-                  </Button>
-                  <Offcanvas show={show} onHide={handleClose} placement={"end"} >
-                    <Offcanvas.Header closeButton>
-                      <Offcanvas.Title>Carrito</Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                      El carrito está vacío
-
-
-
-                    </Offcanvas.Body>
-
-
-
-                  </Offcanvas>
-                </div>
-              </Form>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
+                <Form className="d-flex align-items-center">
+                <div onClick={() => { navigate("/admindata") }} className="">
+                    {userName}
+                  </div>
+                  <Nav className="me-auto">
+                    <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                      <NavDropdown.Item onClick={() => { navigate("/adminorders") }} >
+                        Pedidos
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                  <div className="ms-2">
+                    <Button variant="secondary" onClick={handleShow} className="me-2">
+                      Carrito                                                                 {/* BOTÓN DEL CARRITO */}
+                    </Button>
+                    <Button variant='danger' onClick={() => { logOut() }}>
+                      Log out
+                    </Button>
+                    <Offcanvas show={show} onHide={handleClose} placement={"end"} >
+                      <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Carrito</Offcanvas.Title>
+                      </Offcanvas.Header>
+                      <Offcanvas.Body>
+                        El carrito está vacío
+                      </Offcanvas.Body>
+                    </Offcanvas>
+                  </div>
+                </Form>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        );
+      }
 
     }
+    if (role === 2) {
+      let carrito = sessionStorage.getItem("SELECTEDPIZZA")
+      if (carrito) {
+
+        let carritoArr = JSON.parse(carrito)
+        return (
+          <Navbar className='navbarDesign ' bg="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+
+
+                <Form className="d-flex align-items-center">
+                  <div onClick={() => { navigate("/userorders") }} className="">
+                    {userName}
+                  </div>
+                  <Nav className="me-auto">
+                    <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                      <NavDropdown.Item href="#action/3.2">
+                        Pedidos
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+
+                  <div className="ms-2">
+                    <Button variant="secondary" onClick={handleShow} className="me-2">
+                      Carrito                                                                 {/* BOTÓN DEL CARRITO */}
+                    </Button>
+                    <Button variant='danger' onClick={() => { logOut() }}>
+                      Log out
+                    </Button>
+                    <Offcanvas show={show} onHide={handleClose} placement={"end"} >
+                      <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Carrito</Offcanvas.Title>
+                      </Offcanvas.Header>
+                      <Offcanvas.Body>
+                        {
+                          carritoArr.map((pizza) => {
+                            return (
+                              <Card className='mb-2 d-flex justify-content-center   '>
+                                <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
+                                <Card.Body>
+
+                                  <div onClick={() => { deletePizzaInCarrito(pizza) }} className="btn btn-secondary justify-content-end"> Delete</div>
+                                </Card.Body>
+                              </Card>
+                            )
+                          })
+                        }
+                        <Button href='/order'>
+                          Order
+                        </Button>
+                      </Offcanvas.Body>
+                    </Offcanvas>
+                  </div>
+                </Form>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        );
+      } else {
+        return (
+          <Navbar className='navbarDesign ' bg="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="/" className='text-dark'>Pizzer.IO</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+
+                </Nav>
+                <Form className="d-flex align-items-center">
+                  <div onClick={() => { navigate("/user") }} className="">
+                    {userName}
+                  </div>
+                  <Nav className="me-auto">
+                    <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
+                      <NavDropdown.Item onClick={() => { navigate("/userorders") }}>
+                        Pedidos
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                  <div className="ms-2">
+                    <Button variant="secondary" onClick={handleShow} className="me-2">
+                      Carrito                                                                 {/* BOTÓN DEL CARRITO */}
+                    </Button>
+                    <Button variant='danger' onClick={() => { logOut() }}>
+                      Log out
+                    </Button>
+                    <Offcanvas show={show} onHide={handleClose} placement={"end"} >
+                      <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Carrito</Offcanvas.Title>
+                      </Offcanvas.Header>
+                      <Offcanvas.Body>
+                        El carrito está vacío
+                      </Offcanvas.Body>
+                    </Offcanvas>
+                  </div>
+                </Form>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        );
+      }
+
+    }
+
   } else {
     return (
       <Navbar className='navbarDesign ' bg="dark" expand="lg">
@@ -165,10 +268,8 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-
             </Nav>
             <Form className="d-flex">
-
               <Button href="/login" variant="outline-dark me-2">Iniciar sesión</Button>
               <Button href="/register" variant="outline-dark">Empezar</Button>
             </Form>

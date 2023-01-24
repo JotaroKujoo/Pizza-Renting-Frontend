@@ -10,6 +10,9 @@ import Pizzeria from './containers/Pizzeria/Pizzeria';
 import Order from './containers/Orders/Orders';
 import Payment from './containers/Orders/Payment/Payment';
 import UserOrders from './containers/User/Profile/UserOrders';
+import UserData from './containers/User/Profile/UserData';
+import AdminOrders from './containers/User/Profile/AdminOrders';
+import AdminData from './containers/User/Profile/AdminData';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
           <Route path="/order" element={<Order />} />;
           <Route path="/payment" element={<Payment />} />;
           <Route path="/userorders" element={<UserOrders />} />;
+          <Route path='/user' element={<UserData/>}/>;
+          <Route path="/adminorders" element={<AdminOrders />} />;
+          <Route path='/admindata' element={<AdminData/>} />;
         </Routes>
       </BrowserRouter>
     </div>
