@@ -9,7 +9,6 @@ import { Container, Image, Row, Col, Form, Accordion } from "react-bootstrap";
 import { json, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import jwt_decode from "jwt-decode";
-import OrderAccordion from '../../components/Accordions/OrderAccordion';
 import PizzaAccordion from '../../components/Accordions/PizzaAccordion';
 
 
