@@ -54,15 +54,12 @@ const Login = () => {
           }else{
             sessionStorage.setItem("SAVEJWT", JSON.stringify(res.data.yourToken))
             sessionStorage.setItem("SAVEUSERMAIL",JSON.stringify(user.mail))
-            if (res.data.roleId === 1){
-              sessionStorage.setItem("SAVEUSERROL","Admin")
-            }else{
-              sessionStorage.setItem("SAVEUSERROL","userRole")
+            let decoded = jwt_decode(res.data.yourToken)
+            if (decoded){
+              console.log(decoded)
+              sessionStorage.setItem("SAVEUSERNAME",decoded.name)
+              sessionStorage.setItem("SAVEUSERROL",decoded.role)
             }
-          }
-          let decoded = jwt_decode(res.data.yourToken)
-          if (decoded){
-            sessionStorage.setItem("SAVEUSERNAME",decoded.name)
           }
           navigate("/")
           return res
