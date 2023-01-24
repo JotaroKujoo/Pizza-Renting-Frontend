@@ -78,7 +78,7 @@ const Register = () => {
           }else{
             sessionStorage.setItem("SAVEJWT", JSON.stringify(res.data.yourToken))
             sessionStorage.setItem("SAVEUSERMAIL",JSON.stringify(user.mail))
-            if (res.data.role === "Admin"){
+            if (res.data.roleId === 1){
               sessionStorage.setItem("SAVEUSERROL","Admin")
             }else{
               sessionStorage.setItem("SAVEUSERROL","userRole")
