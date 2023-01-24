@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './containers/Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header'
@@ -15,15 +15,15 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<Home/>} />;
-          <Route path="/register" element={<Register/>} />;
-          <Route path="/login" element={<Login/>} />;
-          <Route path="/pizzeria" element={<Pizzeria/>}/>;
-          <Route path="/order" element={<Order/>}/>;
-          <Route path="/payment" element={<Payment/>}/>;
-          <Route path="/user" element={<UserOrders/>}/>;
+          <Route path="/" element={<Home />} />;
+          <Route path="/register" element={<Register />} />;
+          <Route path="/login" element={<Login />} />;
+          <Route path="/pizzeria" element={<Pizzeria />} />;
+          <Route path="/order" element={<Order />} />;
+          <Route path="/payment" element={<Payment />} />;
+          <Route path="/user" element={<UserOrders />} />;
         </Routes>
       </BrowserRouter>
     </div>

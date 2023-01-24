@@ -48,7 +48,7 @@ function Header() {
   if (logged) {
     let carrito = sessionStorage.getItem("SELECTEDPIZZA")
     if (carrito) {
-      if (carrito.length === 2){
+      if (carrito.length === 2) {
         sessionStorage.removeItem("SELECTEDPIZZA")
       }
       let carritoArr = JSON.parse(carrito)
@@ -59,7 +59,7 @@ function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                
+
                 <NavDropdown title="" className='text-dark' id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -73,14 +73,14 @@ function Header() {
                 </NavDropdown>
               </Nav>
               <Form className="d-flex align-items-center">
-                <div onClick={()=>{navigate("/user")}} className="">
+                <div onClick={() => { navigate("/user") }} className="">
                   {userName}
                 </div>
                 <div className="ms-2">
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}
                   </Button>
-                  <Button variant='danger' onClick={()=>{logOut()}}>
+                  <Button variant='danger' onClick={() => { logOut() }}>
                     Log out
                   </Button>
                   <Offcanvas show={show} onHide={handleClose} placement={"end"} >
@@ -90,15 +90,15 @@ function Header() {
                     <Offcanvas.Body>
                       {
                         carritoArr.map((pizza) => {
-                            return (
-                              <Card  className='mb-2 d-flex justify-content-center   '>
-                                <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
-                                <Card.Body>
-                                  
-                                  <div onClick={()=>{deletePizzaInCarrito(pizza)}} className="btn btn-secondary justify-content-end"> Delete</div>
-                                </Card.Body>
-                              </Card>
-                            )
+                          return (
+                            <Card className='mb-2 d-flex justify-content-center   '>
+                              <Card.Header><div>{pizza.name} x{pizza.quantity}</div></Card.Header>
+                              <Card.Body>
+
+                                <div onClick={() => { deletePizzaInCarrito(pizza) }} className="btn btn-secondary justify-content-end"> Delete</div>
+                              </Card.Body>
+                            </Card>
+                          )
                         })
                       }
                       <Button href='/order'>
@@ -120,17 +120,17 @@ function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                
+
               </Nav>
               <Form className="d-flex align-items-center">
-                <div onClick={()=>{navigate("/user")}} className="">
+                <div onClick={() => { navigate("/user") }} className="">
                   {userName}
                 </div>
                 <div className="ms-2">
                   <Button variant="secondary" onClick={handleShow} className="me-2">
                     Carrito                                                                 {/* BOTÓN DEL CARRITO */}
                   </Button>
-                  <Button variant='danger' onClick={()=>{logOut()}}>
+                  <Button variant='danger' onClick={() => { logOut() }}>
                     Log out
                   </Button>
                   <Offcanvas show={show} onHide={handleClose} placement={"end"} >

@@ -1,8 +1,8 @@
-import { Button,Card } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 
-export default function PizzaCardUnlogged({pizza}){
+export default function PizzaCardUnlogged({ pizza }) {
 
-    
+
 
     return (
         <Card className='m-3' style={{ height: "25rem", width: '18rem' }}>
@@ -14,7 +14,7 @@ export default function PizzaCardUnlogged({pizza}){
                 </Card.Text>
             </Card.Body>
 
-            
+
         </Card>
     )
 

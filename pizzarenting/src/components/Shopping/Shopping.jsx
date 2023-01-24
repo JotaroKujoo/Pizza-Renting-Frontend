@@ -15,25 +15,25 @@ function OffCanvasExample({ name, ...props }) {
 
     let logged = sessionStorage.getItem("SAVEUSERMAIL")
 
-    useEffect(()=>{
-        if (logged){
+    useEffect(() => {
+        if (logged) {
             let carrito = sessionStorage.getItem("SELECTEDPIZZA")
-            if (carrito){
-                if (content === undefined){
+            if (carrito) {
+                if (content === undefined) {
                     setContent(carrito)
                 }
 
             }
         }
     })
-        
-    
+
+
 
     if (logged) {
         let carrito = sessionStorage.getItem("SELECTEDPIZZA")
         if (carrito) {
             let carritoArr = carrito.split(",")
-            
+
             return (
                 <>
                     <Button variant="secondary" onClick={handleShow} className="me-2">
@@ -44,13 +44,13 @@ function OffCanvasExample({ name, ...props }) {
                             <Offcanvas.Title>Carrito</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                        
-                            
-                            
+
+
+
                         </Offcanvas.Body>
 
-                            
-                        
+
+
                     </Offcanvas>
                 </>
             );

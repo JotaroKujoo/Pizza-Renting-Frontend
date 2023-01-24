@@ -5,31 +5,31 @@ import { Button, Card } from "react-bootstrap"
 export default function PizzaCardLogged({ pizza }) {
     const [selected, setSelected] = useState(false)
     const [counter, setCounter] = useState(0)
-    useEffect(()=>{
-        if (counter <= 0){
+    useEffect(() => {
+        if (counter <= 0) {
             setSelected(false)
         }
     })
-    
+
     const CounterHandler = (e) => {
         let carrito = JSON.parse(sessionStorage.getItem("SELECTEDPIZZA"))
         const value = e.target.value
 
-        carrito.map((pizzaCarrito)=>{
-            if(pizzaCarrito.id === pizza.id){
+        carrito.map((pizzaCarrito) => {
+            if (pizzaCarrito.id === pizza.id) {
                 const newCarrito = carrito.filter(carrito => carrito.id != pizza.id)
                 sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(newCarrito))
             }
         })
 
-        if(value === "+"){
-            setCounter(counter+1)
+        if (value === "+") {
+            setCounter(counter + 1)
             pizza.quantity = counter + 1
-            
-            
+
+
         }
-        if(value==="-"){
-            setCounter(counter-1)
+        if (value === "-") {
+            setCounter(counter - 1)
             pizza.quantity = counter - 1
         }
 
@@ -42,12 +42,12 @@ export default function PizzaCardLogged({ pizza }) {
             carrito.push(pizza)
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(carrito))
         }
-        
 
-        
-        
 
-        
+
+
+
+
     }
 
     const selectedPizzaHandler = (body) => {
@@ -61,7 +61,7 @@ export default function PizzaCardLogged({ pizza }) {
             sessionStorage.setItem("SELECTEDPIZZA", JSON.stringify(carrito))
         }
         setSelected(true)
-        setCounter(counter+1)
+        setCounter(counter + 1)
     }
 
 
@@ -76,12 +76,12 @@ export default function PizzaCardLogged({ pizza }) {
             </Card.Body>
 
             {selected ? (
-                
+
                 <Card.Body className="d-flex justify-content-end align-items-center">
                     <div className="counterPanel d-flex justify-content-center align-items-center">
-                        <Button onClick={(e)=>{CounterHandler(e)}} value="+" className="me-2" variant="dark">+</Button>
+                        <Button onClick={(e) => { CounterHandler(e) }} value="+" className="me-2" variant="dark">+</Button>
                         <div className="me-2">{counter}</div>
-                        <Button onClick={(e)=>{CounterHandler(e)}} className="me-2" value="-" variant="dark">-</Button>
+                        <Button onClick={(e) => { CounterHandler(e) }} className="me-2" value="-" variant="dark">-</Button>
                     </div>
                     <Button onClick={() => { selectedPizzaHandler(pizza) }} className='me-4' > BUY</Button>
                     <h4>{pizza.price}€</h4>

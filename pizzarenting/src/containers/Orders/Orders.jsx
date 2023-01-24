@@ -28,13 +28,13 @@ function Order() {
                 setPizzas(carrito)
             }
         }
-        
+
     })
 
     const showTemp = (body) => {
         let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
-        
-        let result = orderArr.filter((item,index)=>{
+
+        let result = orderArr.filter((item, index) => {
             return item.idPizza !== body.idPizza
         })
         result.push(body)
@@ -47,25 +47,25 @@ function Order() {
             ...prevState,
             "address": e.target.value
         }))
-        sessionStorage.setItem("ADDRESS",JSON.stringify(e.target.value))
+        sessionStorage.setItem("ADDRESS", JSON.stringify(e.target.value))
     }
 
     const finishOrder = () => {
         let orderArr = JSON.parse(sessionStorage.getItem("ORDER"))
-        let result = orderArr.filter((item,index)=>{
+        let result = orderArr.filter((item, index) => {
             return orderArr.indexOf(item) === index;
         })
 
         sessionStorage.setItem("ORDER", JSON.stringify(result))
 
-        
+
 
         navigate("/payment")
-        
-        
+
+
     }
 
-    
+
 
     if (pizzas.length > 0) {
         return (
@@ -76,7 +76,7 @@ function Order() {
                             {
                                 pizzas.map((pizza) => {
                                     return (
-                                        <PizzaAccordion onUpdate={showTemp}  pizza={pizza}/>
+                                        <PizzaAccordion onUpdate={showTemp} pizza={pizza} />
                                     )
                                 })
                             }
@@ -84,9 +84,9 @@ function Order() {
                     </Col>
                     <Col>
                         <Card className='p-5'>
-                            <Button onClick={()=>{finishOrder()}}>Realizar pedido</Button>
+                            <Button onClick={() => { finishOrder() }}>Realizar pedido</Button>
                             <Form.Label className='mt-4'>Dirección de envío</Form.Label>
-                            <Form.Control onKeyUp={(e)=>{inputAddressHandler(e)}} placeholder='Your address' className='mt-2'></Form.Control>
+                            <Form.Control onKeyUp={(e) => { inputAddressHandler(e) }} placeholder='Your address' className='mt-2'></Form.Control>
                         </Card>
                     </Col>
                 </Row>

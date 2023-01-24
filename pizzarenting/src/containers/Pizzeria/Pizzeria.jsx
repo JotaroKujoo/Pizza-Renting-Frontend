@@ -17,28 +17,28 @@ function Pizzeria() {
 
     const [pizzeria, setPizzeria] = useState("")
 
-    const [pizzas,setPizzas] = useState([])
+    const [pizzas, setPizzas] = useState([])
 
-    if(pizzeria === ""){
+    if (pizzeria === "") {
         bringPizzeriaById(pizzeriaId)
-        .then((res)=>{
-            setPizzeria(res.data.foundPizzeria.name)
-        })
+            .then((res) => {
+                setPizzeria(res.data.foundPizzeria.name)
+            })
     }
 
 
-    if (pizzas.length === 0 && pizzeria !==""){
+    if (pizzas.length === 0 && pizzeria !== "") {
         bringAllPizzasInPizzeria(pizzeria)
-        .then((res)=>{
+            .then((res) => {
 
-            
-            setPizzas(res.data)
-            
-        })
+
+                setPizzas(res.data)
+
+            })
     }
 
-    
-    if (logged){
+
+    if (logged) {
         return (
             <Container fluid className="pizzeria">
                 <Row className='d-flex ms-5 justify-content-center'>
@@ -50,27 +50,27 @@ function Pizzeria() {
                         </Form>
                     </Col>
                 </Row>
-    
+
                 <Row className="">
-                    
+
                     <Col>
                         <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-wrap m-3">
                             {
                                 pizzas.map(pizza => (
-                                    
-                                        <PizzaCardLogged pizza={pizza}/>
-                                        
+
+                                    <PizzaCardLogged pizza={pizza} />
+
                                 ))
                             }
-    
-    
-    
+
+
+
                         </div>
                     </Col>
                 </Row>
             </Container>
         )
-    }else{
+    } else {
         return (
             <Container fluid className="pizzeria">
                 <Row className='d-flex ms-5 justify-content-center'>
@@ -82,21 +82,21 @@ function Pizzeria() {
                         </Form>
                     </Col>
                 </Row>
-    
+
                 <Row className="">
-                    
+
                     <Col>
                         <div className="cardcontainer mt-3 d-flex justify-content-center align-items-center flex-wrap m-3">
                             {
                                 pizzas.map(pizza => (
-                                    
-                                        <PizzaCardUnlogged pizza={pizza}/>
-                                        
+
+                                    <PizzaCardUnlogged pizza={pizza} />
+
                                 ))
                             }
-    
-    
-    
+
+
+
                         </div>
                     </Col>
                 </Row>
